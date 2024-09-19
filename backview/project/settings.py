@@ -109,7 +109,7 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'PORT': int(os.getenv('DB_PORT')),
     }
 }
 
@@ -118,37 +118,6 @@ if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(
         default=os.environ.get('DATABASE_URL')
     )
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.getenv('DATABASE_URL')
-#     )
-# }
-
-
-# Default to an empty database configuration
-# DATABASES = {
-#     'default': {}
-# }
-
-# Check if DATABASE_URL is provided
-# DATABASE_URL = os.getenv('DATABASE_URL')
-# if DATABASE_URL:
-#     DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
-# else:
-#     # Fall back to local development settings (e.g., sqlite3)
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.getenv('DATABASE_URL', 'postgres://user:password@localhost:5432/dbname')
-#     )
-# }
 
 
 # Security settings
