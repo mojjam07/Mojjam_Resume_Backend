@@ -3,3 +3,10 @@ venv/
 db.sqlite3
 package-lock.json
 package.json
+.env
+*.pyc
+__pycache__/
+/static/
+/media/
+*.sqlite3
+.vscode/
