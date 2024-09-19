@@ -102,16 +102,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('DB_USER'),
-#         'PASSWORD': os.getenv('DB_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': os.getenv('DB_PORT'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+    }
+}
+
+# Override with DATABASE_URL if available
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 
 # DATABASES = {
 #     'default': dj_database_url.config(
@@ -119,26 +125,30 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #     )
 # }
 
-import dj_database_url
-import os
 
 # Default to an empty database configuration
-DATABASES = {
-    'default': {}
-}
+# DATABASES = {
+#     'default': {}
+# }
 
 # Check if DATABASE_URL is provided
-DATABASE_URL = os.getenv('DATABASE_URL')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
-else:
-    # Fall back to local development settings (e.g., sqlite3)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+# DATABASE_URL = os.getenv('DATABASE_URL')
+# if DATABASE_URL:
+#     DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+# else:
+#     # Fall back to local development settings (e.g., sqlite3)
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv('DATABASE_URL', 'postgres://user:password@localhost:5432/dbname')
+#     )
+# }
 
 
 # Security settings
