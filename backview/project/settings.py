@@ -166,7 +166,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Enable WhiteNoise to compress and cache static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "./backview/static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
