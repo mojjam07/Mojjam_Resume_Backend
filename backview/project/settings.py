@@ -205,7 +205,7 @@ if not os.path.exists(LOG_DIR):
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 # Add the actual production host (Render domain) to ALLOWED_HOSTS
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
@@ -270,9 +270,13 @@ DATABASES = {
     )
 }
 
+database_url = os.environ.get('DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(database_url)
+
+# 
 # Ensure SSL is disabled for local environments
-if os.getenv('DJANGO_PRODUCTION', 'False') != 'True':
-    DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
+# if os.getenv('DJANGO_PRODUCTION', 'False') != 'True':
+#     DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
 
 # Security settings
 SECURE_BROWSER_XSS_FILTER = True
@@ -329,3 +333,5 @@ LOGGING = {
         },
     },
 }
+
+
