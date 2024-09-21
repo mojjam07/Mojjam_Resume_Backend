@@ -271,8 +271,8 @@ DATABASES = {
 }
 
 # Ensure SSL is disabled for local environments
-# if os.getenv('DJANGO_PRODUCTION', 'False') != 'True':
-#     DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
+if os.getenv('DJANGO_PRODUCTION', 'False') != 'True':
+    DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
 
 # Security settings
 SECURE_BROWSER_XSS_FILTER = True
