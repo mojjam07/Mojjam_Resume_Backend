@@ -307,7 +307,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'backview/static')]
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Enable WhiteNoise to compress and cache static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    "staticfiles":{
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage" 
+    }
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
