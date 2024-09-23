@@ -68,14 +68,27 @@ MIDDLEWARE = [
 #CORS_ORIGIN_ALLOW_ALL = DEBUG  # Allow all in development, restrict in production
 
 
-cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', '')
-if cors_origins:
-    try:
-        CORS_ALLOWED_ORIGINS = json.loads(cors_origins)
-    except json.JSONDecodeError:
-        CORS_ALLOWED_ORIGINS = []  # Default to an empty list if there's an error
-else:
-    CORS_ALLOWED_ORIGINS = []  # Default to an empty list if the variable is not set
+# cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', '')
+# if cors_origins:
+#     try:
+#         CORS_ALLOWED_ORIGINS = json.loads(cors_origins)
+#     except json.JSONDecodeError:
+#         CORS_ALLOWED_ORIGINS = []  # Default to an empty list if there's an error
+# else:
+#     CORS_ALLOWED_ORIGINS = []  # Default to an empty list if the variable is not set
+
+# Fetch CORS_ALLOWED_ORIGINS from environment variables
+cors_origins_env = os.getenv('CORS_ALLOWED_ORIGINS', '[]')
+
+# Convert the environment variable to a Python list
+CORS_ALLOWED_ORIGINS = json.loads(cors_origins_env)
+
+# Example fallback if nothing is set (you can adjust based on your needs)
+if not CORS_ALLOWED_ORIGINS:
+    CORS_ALLOWED_ORIGINS = [
+        # "https://your-frontend-url.com"
+        CORS_ALLOWED_ORIGINS
+    ]
 
 
 ROOT_URLCONF = 'project.urls'
