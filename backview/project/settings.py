@@ -72,10 +72,14 @@ cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', '')
 if cors_origins:
     try:
         CORS_ALLOWED_ORIGINS = json.loads(cors_origins)
+        print(CORS_ALLOWED_ORIGINS)  # Debug to ensure it's parsed correctly
     except json.JSONDecodeError:
-        CORS_ALLOWED_ORIGINS = []  # Default to an empty list if there's an error
+        CORS_ALLOWED_ORIGINS = []  # Fallback if parsing fails
+        print("Failed to parse CORS_ALLOWED_ORIGINS")
 else:
-    CORS_ALLOWED_ORIGINS = []  # Default to an empty list if the variable is not set
+    CORS_ALLOWED_ORIGINS = []  # Default to an empty list if not set
+    print("CORS_ALLOWED_ORIGINS not set")
+
 
 # # Fetch CORS_ALLOWED_ORIGINS from environment variables
 # cors_origins_env = os.getenv('CORS_ALLOWED_ORIGINS', '[]')
