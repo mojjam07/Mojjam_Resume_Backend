@@ -183,6 +183,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 
 import os
+import json
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
@@ -239,7 +240,7 @@ MIDDLEWARE = [
 # CORS Configuration (Restrict allowed origins in production)
 CORS_ORIGIN_ALLOW_ALL = DEBUG  # Allow all in development, restrict in production
 if not DEBUG:
-    CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')
+    CORS_ALLOWED_ORIGINS = json.load(os.getenv('CORS_ALLOWED_ORIGINS', '[]'))
 
 ROOT_URLCONF = 'project.urls'
 
