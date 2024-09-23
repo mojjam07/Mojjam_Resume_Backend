@@ -65,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 # CORS Configuration (Restrict allowed origins in production)
-CORS_ORIGIN_ALLOW_ALL = DEBUG  # Allow all in development, restrict in production
+#CORS_ORIGIN_ALLOW_ALL = DEBUG  # Allow all in development, restrict in production
 
 
 cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', '')
