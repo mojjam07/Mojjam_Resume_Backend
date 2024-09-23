@@ -303,8 +303,8 @@ USE_TZ = True
 # Static and media files settings
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'backview/static')]
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, './backview/static')]
+# STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Enable WhiteNoise to compress and cache static files
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
