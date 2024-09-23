@@ -240,7 +240,7 @@ MIDDLEWARE = [
 # CORS Configuration (Restrict allowed origins in production)
 CORS_ORIGIN_ALLOW_ALL = DEBUG  # Allow all in development, restrict in production
 if not DEBUG:
-    CORS_ALLOWED_ORIGINS = json.load(os.getenv('CORS_ALLOWED_ORIGINS', '[]'))
+    CORS_ALLOWED_ORIGINS = json.loads(os.getenv('CORS_ALLOWED_ORIGINS', '[]'))
 
 ROOT_URLCONF = 'project.urls'
 
