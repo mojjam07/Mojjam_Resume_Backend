@@ -81,20 +81,6 @@ else:
     print("CORS_ALLOWED_ORIGINS not set")
 
 
-# # Fetch CORS_ALLOWED_ORIGINS from environment variables
-# cors_origins_env = os.getenv('CORS_ALLOWED_ORIGINS', '[]')
-
-# # Convert the environment variable to a Python list
-# CORS_ALLOWED_ORIGINS = json.loads(cors_origins_env)
-
-# # Example fallback if nothing is set (you can adjust based on your needs)
-# if not CORS_ALLOWED_ORIGINS:
-#     CORS_ALLOWED_ORIGINS = [
-#         # "https://your-frontend-url.com"
-#         CORS_ALLOWED_ORIGINS
-#     ]
-
-
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
