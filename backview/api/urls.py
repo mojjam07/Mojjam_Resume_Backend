@@ -16,5 +16,5 @@ router.register(r'consults', ConsultViewSet)
 router.register(r'questions', QuestionViewSet)
 
 urlpatterns = [
-    path('/api/', include(router.urls)),
+    path('/api', include(router.urls)),
 ]
