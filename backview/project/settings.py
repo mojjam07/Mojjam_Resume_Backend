@@ -65,23 +65,29 @@ except json.JSONDecodeError:
     print("Failed to parse CORS_ALLOWED_ORIGINS; defaulting to empty list")
 
 # Configure CORS
-CORS_ORIGIN_ALLOW_ALL = False  # Set to True if you want to allow all origins
+# CORS_ORIGIN_ALLOW_ALL = False  # Set to True if you want to allow all origins
 CORS_ALLOWED_ORIGINS = CORS_ALLOWED_ORIGINS  # Use the loaded origins
 
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS',
-]
+CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL')
 
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    # 'authorization',
-    # add other headers if needed
-]
+# CORS_ALLOW_METHODS = [
+#     'GET',
+#     'POST',
+#     'PUT',
+#     'PATCH',
+#     'DELETE',
+#     'OPTIONS',
+# ]
+
+CORS_ALLOW_METHODS = os.getenv('CORS_ALLOW_METHODS')
+
+# CORS_ALLOW_HEADERS = [
+#     'content-type',
+#     # 'authorization',
+#     # add other headers if needed
+# ]
+
+CORS_ALLOW_HEADERS = os.getenv('CORS_ALLOW_HEADERS')
 
 ROOT_URLCONF = 'project.urls'
 
