@@ -8,7 +8,6 @@ import json
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
-from corsheaders.defaults import default_methods
 
 # Load environment variables from .env file
 load_dotenv()
@@ -80,7 +79,7 @@ CORS_ORIGIN_ALLOW_ALL = bool(os.getenv('CORS_ORIGIN_ALLOW_ALL', 'False').lower()
 #     'OPTIONS',
 # ]
 
-CORS_ALLOW_METHODS = list(os.getenv(default_methods))
+CORS_ALLOW_METHODS = os.getenv('CORS_ALLOW_METHODS', 'GET,POST,PUT,DELETE,PATCH,OPTIONS').split(',')
 
 # CORS_ALLOW_HEADERS = [
 #     'content-type',
