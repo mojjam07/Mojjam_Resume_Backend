@@ -68,7 +68,7 @@ except json.JSONDecodeError:
 # CORS_ORIGIN_ALLOW_ALL = False  # Set to True if you want to allow all origins
 CORS_ORIGIN_ALLOW_ALL = bool(os.getenv('CORS_ORIGIN_ALLOW_ALL', 'False').lower() in ('true', '1')) # Use the loaded origins
 
-CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL')
+# CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL')
 
 # CORS_ALLOW_METHODS = [
 #     'GET',
