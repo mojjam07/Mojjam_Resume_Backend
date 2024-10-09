@@ -79,7 +79,7 @@ CORS_ORIGIN_ALLOW_ALL = bool(os.getenv('CORS_ORIGIN_ALLOW_ALL', 'False').lower()
 #     'OPTIONS',
 # ]
 
-CORS_ALLOW_METHODS = os.getenv('CORS_ALLOW_METHODS', 'GET,POST,PUT,DELETE,PATCH,OPTIONS').split(',')
+CORS_ALLOW_METHODS = list(os.getenv('CORS_ALLOW_METHODS', 'GET,POST,PUT,DELETE,PATCH,OPTIONS').split(','))
 
 # CORS_ALLOW_HEADERS = [
 #     'content-type',
@@ -87,7 +87,7 @@ CORS_ALLOW_METHODS = os.getenv('CORS_ALLOW_METHODS', 'GET,POST,PUT,DELETE,PATCH,
 #     # add other headers if needed
 # ]
 
-CORS_ALLOW_HEADERS = os.getenv('CORS_ALLOW_HEADERS')
+CORS_ALLOW_HEADERS = list(os.getenv('CORS_ALLOW_HEADERS', 'content-type').split(','))
 
 ROOT_URLCONF = 'project.urls'
 
