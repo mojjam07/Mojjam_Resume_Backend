@@ -57,35 +57,17 @@ MIDDLEWARE = [
 # Load the allowed origins from environment variables
 cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', '[]')
 try:
-    # Parse the JSON string into a Python list
     CORS_ALLOWED_ORIGINS = json.loads(cors_origins)
     print(f"The allowed CORS origins are: {CORS_ALLOWED_ORIGINS}")
 except json.JSONDecodeError:
-    CORS_ALLOWED_ORIGINS = []  # Fallback if parsing fails
+    CORS_ALLOWED_ORIGINS = [] 
     print("Failed to parse CORS_ALLOWED_ORIGINS; defaulting to empty list")
 
 # Configure CORS
-# CORS_ORIGIN_ALLOW_ALL = False  # Set to True if you want to allow all origins
 CORS_ORIGIN_ALLOW_ALL = bool(os.getenv('CORS_ORIGIN_ALLOW_ALL', 'False').lower() in ('true', '1')) # Use the loaded origins
-
-# CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL')
-
-# CORS_ALLOW_METHODS = [
-#     'GET',
-#     'POST',
-#     'PUT',
-#     'PATCH',
-#     'DELETE',
-#     'OPTIONS',
-# ]
 
 CORS_ALLOW_METHODS = list(os.getenv('CORS_ALLOW_METHODS', 'GET,POST,PUT,DELETE,PATCH,OPTIONS').split(','))
 
-# CORS_ALLOW_HEADERS = [
-#     'content-type',
-#     # 'authorization',
-#     # add other headers if needed
-# ]
 
 CORS_ALLOW_HEADERS = list(os.getenv('CORS_ALLOW_HEADERS', 'content-type').split(','))
 
