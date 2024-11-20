@@ -7,6 +7,10 @@ from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django.http import JsonResponse
+
+def home(request):
+    return JsonResponse({"message": "Welcome to Mojjam Resume Backend API!"})
 
 class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
