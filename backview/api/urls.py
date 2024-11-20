@@ -1,20 +1,22 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProjectViewSet, SkillViewSet, ExperienceViewSet, EducationViewSet, ContactViewSet, ProfileViewSet, TestimonialViewSet, NewTestimonialViewSet, ServiceViewSet, ConsultViewSet, QuestionViewSet
+from .views import (
+    ProjectViewSet,
+    ContactViewSet,
+    ConsultViewSet,
+    QuestionViewSet,
+    ApprovedTestimonialListView,
+    SubmitTestimonialView,
+)
 
 router = DefaultRouter()
-router.register(r'projects', ProjectViewSet)
-router.register(r'skills', SkillViewSet )
-router.register(r'experience', ExperienceViewSet)
-router.register(r'education', EducationViewSet)
-router.register(r'contacts', ContactViewSet)
-router.register(r'profile', ProfileViewSet)
-router.register(r'testimonials', TestimonialViewSet)
-router.register(r'newtestimonials', NewTestimonialViewSet)
-router.register(r'services', ServiceViewSet)
-router.register(r'consults', ConsultViewSet)
-router.register(r'questions', QuestionViewSet)
+router.register(r'projects', ProjectViewSet, basename='project')
+router.register(r'contacts', ContactViewSet, basename='contact')
+router.register(r'consults', ConsultViewSet, basename='consult')
+router.register(r'questions', QuestionViewSet, basename='question')
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/testimonials/approved/', ApprovedTestimonialListView.as_view(), name='approved_testimonials'),
+    path('api/testimonials/submit/', SubmitTestimonialView.as_view(), name='submit_testimonial'),
 ]
