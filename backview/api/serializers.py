@@ -18,6 +18,12 @@ class TestimonialSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'testimonial', 'profile_picture', 'approved']
         read_only_fields = ['approved']  # Prevent approval field modification by users
 
+    def get_profile_picture(self, obj):
+        request = self.context.get("request")
+        if obj.profile_picture:
+            return request.build_absolute_uri(obj.profile_picture.url)
+        return None
+    
 class ConsultSerializer(ModelSerializer):
     class Meta:
         model = Consult

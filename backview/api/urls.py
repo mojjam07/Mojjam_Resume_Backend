@@ -17,5 +17,5 @@ router.register(r'questions', QuestionViewSet, basename='question')
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('testimonials/', TestimonialListView.as_view(), name='testimonials')
+    path('api/testimonials/', TestimonialListView.as_view(), name='testimonials')
 ]
