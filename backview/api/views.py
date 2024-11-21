@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from django.http import JsonResponse
 
 def home(request):
@@ -21,6 +21,11 @@ class ProjectViewSet(ModelViewSet):
 class ContactViewSet(ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        # Optional: Limit query logic or provide filtered data
+        return super().get_queryset()
 
 
 class ApprovedTestimonialListView(ListAPIView):

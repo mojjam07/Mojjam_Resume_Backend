@@ -24,8 +24,8 @@ from api.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('', home)
+    path('', include('api.urls')),
+    path('home/', home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
