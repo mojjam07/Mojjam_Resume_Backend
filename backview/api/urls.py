@@ -14,6 +14,7 @@ router.register(r'projects', ProjectViewSet, basename='project')
 router.register(r'contacts', ContactViewSet, basename='contact')
 router.register(r'consults', ConsultViewSet, basename='consult')
 router.register(r'questions', QuestionViewSet, basename='question')
+router.register(r'testimonials', QuestionViewSet, basename='testimonials')
 
 urlpatterns = [
     path('api/', include(router.urls)),
