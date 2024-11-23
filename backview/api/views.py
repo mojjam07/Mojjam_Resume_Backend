@@ -18,15 +18,26 @@ class ProjectViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-class ContactViewSet(ModelViewSet):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
-    permission_classes = [AllowAny]
+# class ContactViewSet(ModelViewSet):
+#     queryset = Contact.objects.all()
+#     serializer_class = ContactSerializer
+#     permission_classes = [AllowAny]
 
-    def get_queryset(self):
-        # Optional: Limit query logic or provide filtered data
-        return super().get_queryset()
+#     def get_queryset(self):
+#         # Optional: Limit query logic or provide filtered data
+#         return super().get_queryset()
 
+class ContactListView(APIView):
+    def post(self, request):
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()  # Save the contact message to the database
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request):
+        contacts = Contact.objects.all()  # Query all contact messages
+        serializer = ContactSerializer(contacts, many=True)  # Serialize the queryset
+        return Response(serializer.data, status=status.HTTP_200_OK)  # Return serialized data
 
 # class ApprovedTestimonialListView(ListAPIView):
 #     queryset = Testimonial.objects.filter(approved=True).only('name', 'testimonial', 'profile_picture')

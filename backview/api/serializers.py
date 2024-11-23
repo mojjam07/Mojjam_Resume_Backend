@@ -10,7 +10,8 @@ class ProjectSerializer(ModelSerializer):
 class ContactSerializer(ModelSerializer):
     class Meta:
         model = Contact
-        fields = '__all__'
+        fields = ['name', 'email', 'message']
+        read_only_field = ['sent_at']
 
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
