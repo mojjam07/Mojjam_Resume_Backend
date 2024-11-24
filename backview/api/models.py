@@ -25,7 +25,7 @@ class Contact(models.Model):
 class Testimonial(models.Model):
     name = models.CharField(max_length=100)
     testimonial = models.TextField()
-    profile_picture = models.ImageField(upload_to='testimonial_pics/', blank=True, null=True)
+    image = models.ImageField(upload_to='testimonial_pics/', blank=True, null=True)
     approved = models.BooleanField(null=True, default=False)
 
     def __str__(self):

@@ -14,15 +14,17 @@ class ContactSerializer(ModelSerializer):
         read_only_field = ['sent_at']
 
 class TestimonialSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField() # Just added
+
     class Meta:
         model = Testimonial
-        fields = ['id', 'name', 'testimonial', 'profile_picture', 'approved']
+        fields = ['id', 'name', 'testimonial', 'image', 'image_url', 'approved']
         read_only_fields = ['approved']  # Prevent approval field modification by users
 
-    def get_profile_picture(self, obj):
+    def get_image_url(self, obj):
         request = self.context.get("request")
-        if obj.profile_picture:
-            return request.build_absolute_uri(obj.profile_picture.url)
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url)
         return None
     
 class ConsultSerializer(ModelSerializer):

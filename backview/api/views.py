@@ -67,7 +67,7 @@ class TestimonialListView(APIView):
     def get(self, request):
         # Filter testimonials where approved=True
         testimonials = Testimonial.objects.filter(approved=True)
-        serializer = TestimonialSerializer(testimonials, many=True)
+        serializer = TestimonialSerializer(testimonials, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
