@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from django.http import JsonResponse
 
@@ -64,7 +65,8 @@ class TestimonialListView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def get(self, request):
-        testimonials = Testimonial.objects.all()
+        # Filter testimonials where approved=True
+        testimonials = Testimonial.objects.filter(approved=True)
         serializer = TestimonialSerializer(testimonials, many=True)
         return Response(serializer.data)
 
