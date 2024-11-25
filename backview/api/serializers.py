@@ -22,8 +22,8 @@ class TestimonialSerializer(serializers.ModelSerializer):
         read_only_fields = ['approved']  # Prevent approval field modification by users
 
     def get_image_url(self, obj):
-        request = self.context.get("request")
-        if obj.image:
+        request = self.context.get("request", None)
+        if request and obj.image:
             return request.build_absolute_uri(obj.image.url)
         return None
     
