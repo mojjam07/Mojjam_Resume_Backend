@@ -13,11 +13,22 @@ from django.http import JsonResponse
 def home(request):
     return JsonResponse({"message": "Welcome to Mojjam Resume Backend API!"})
 
-class ProjectViewSet(ModelViewSet):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+# class ProjectViewSet(ModelViewSet):
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
+#     # permission_classes = [IsAuthenticatedOrReadOnly]
 
+class ProjectListView(APIView):
+    def post(self, request):
+        serializer = ProjectSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()  # Save the contact message to the database
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request):
+        contacts = Project.objects.all()  # Query all contact messages
+        serializer = ProjectSerializer(contacts, many=True, context={'request': request})  # Serialize the queryset
+        return Response(serializer.data, status=status.HTTP_200_OK)  # Return serialized data
 
 # class ContactViewSet(ModelViewSet):
 #     queryset = Contact.objects.all()

@@ -3,9 +3,18 @@ from rest_framework.serializers import ModelSerializer
 from .models import Project, Contact, Testimonial, Consult, Question
 
 class ProjectSerializer(ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ['title', 'description', 'technologies', 'github_link', 'image', 'image_url' ]
+        read_only_field = ['created_at']
+        
+    def get_image_url(self, obj):
+        request = self.context.get("request", None)
+        if request and obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        return None
 
 class ContactSerializer(ModelSerializer):
     class Meta:
